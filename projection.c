@@ -14,6 +14,17 @@
 
 // rotación en diagonal del terreno, como inclinar el plano hacia nosotras
 
+t_proj	project(t_point p, t_view *view)
+{
+	t_proj proj;
+
+	proj.x = ((p.x - p.y) * 10) * view->scale + view->offset_x;
+	proj.y = ((p.x + p.y) * 5 - p.z * view->z_scale) * view->scale + view->offset_y;
+	proj.z = p.z;
+	return (proj);
+}
+
+/*
 t_proj	project(t_point p)
 {
 	t_proj	proj;
@@ -32,3 +43,4 @@ t_proj	project(t_point p)
 	proj.z = p.z;
 	return (proj);
 }
+*/

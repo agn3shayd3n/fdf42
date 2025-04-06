@@ -20,7 +20,7 @@ void	draw_line(t_proj a, t_proj b, t_data *img)
 	bresenham(a, b, img, color);
 }
 
-void	draw_map(t_map *map, t_data *img)
+void	draw_map(t_map *map, t_data *img, t_view *view)
 {
 	int	x;
 	int	y;
@@ -31,10 +31,17 @@ void	draw_map(t_map *map, t_data *img)
 		x = 0;
 		while (x < map->width)
 		{
-			if (x < map->width - 1)
-				draw_line(project(map->points[y][x]), project(map->points[y][x + 1]), img);
+			if (x < map->width -1)
+				if (x < map->width - 1)
+				draw_line(
+					project(map->points[y][x], view),
+					project(map->points[y][x + 1], view),
+					img);
 			if (y < map->height - 1)
-				draw_line(project(map->points[y][x]), project(map->points[y + 1][x]), img);
+				draw_line(
+					project(map->points[y][x], view),
+					project(map->points[y + 1][x], view),
+					img);
 			x++;
 		}
 		y++;

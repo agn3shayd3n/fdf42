@@ -19,6 +19,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <math.h>
+#include "mlx.h"
 
 typedef struct s_point {
 	int	x;
@@ -67,6 +68,24 @@ typedef struct s_line
 	t_data	*img;
 } t_line;
 
+// views and controls
+
+typedef struct s_view {
+	float	scale;
+	float	z_scale;
+	float	offset_y;
+	float	offset_x;
+} t_view;
+
+typedef struct s_fdf
+{
+	void	*mlx;
+	void	*win;
+	t_data	img;
+	t_map	*map;
+	t_view	view;
+}	t_fdf;
+
 // read map
 t_map	*read_map(const char *filename);
 int		get_height(const char *filename);
@@ -76,8 +95,8 @@ int		map_filler(t_map *map, const char *filename);
 void	filler_aux(t_point *row, char **split, int y, int width);
 
 // draw topography
-void	draw_map(t_map *map, t_data *img);
-t_proj	project(t_point p);
+void	draw_map(t_map *map, t_data *img, t_view *view);
+t_proj	project(t_point p, t_view *v);
 void	bresenham(t_proj a, t_proj b, t_data *img, int color);
 void	bresenham_ii(t_line *line);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
