@@ -1,0 +1,98 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agnesgar <agnesgar@student.42madrid.com>   #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-04-04 20:36:47 by agnesgar          #+#    #+#             */
+/*   Updated: 2025-04-04 20:36:47 by agnesgar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FDF_H
+# define FDF_H
+
+#include "get_next_line.h"
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <math.h>
+
+typedef struct s_point {
+	int	x;
+	int	y;
+	int	z;
+	int	color;
+} t_point;
+
+typedef struct	s_map {
+	int		width;
+	int		height;
+	t_point	**points;
+
+} t_map;
+
+// image in buffer
+
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bpp; // bits per pixel
+	int		line_len;
+	int		endian;
+} t_data;
+
+// projection trigonometry, 3d illusion
+
+typedef struct s_proj {
+	int	x;
+	int	y;
+	int	z;
+} t_proj;
+
+// draw line, bresenham algo
+
+typedef struct s_line
+{
+	int		dx;
+	int		dy;
+	int		st_x;
+	int		st_y;
+	int		err;
+	int		color;
+	t_proj	a;
+	t_proj	b;
+	t_data	*img;
+} t_line;
+
+// read map
+t_map	*read_map(const char *filename);
+int		get_height(const char *filename);
+int		get_width(const char *filename);
+char	**ft_split(char *s, char c);
+int		map_filler(t_map *map, const char *filename);
+void	filler_aux(t_point *row, char **split, int y, int width);
+
+// draw topography
+void	draw_map(t_map *map, t_data *img);
+t_proj	project(t_point p);
+void	bresenham(t_proj a, t_proj b, t_data *img, int color);
+void	bresenham_ii(t_line *line);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	draw_line(t_proj a, t_proj b, t_data *img);
+
+// color
+int	get_color(int z);
+
+// keys
+int	handle_key(int keycode, void *param);
+int	handle_close(void *param);
+
+// utils
+int	ft_atoi(const char *str);
+
+
+
+# endif
