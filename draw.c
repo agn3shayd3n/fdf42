@@ -16,7 +16,7 @@ void	draw_line(t_proj a, t_proj b, t_data *img)
 {
 	int	color;
 
-	color = get_color((a.z + b.z) / 2);
+	color = get_color(a.z);
 	bresenham(a, b, img, color);
 }
 

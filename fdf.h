@@ -32,7 +32,6 @@ typedef struct	s_map {
 	int		width;
 	int		height;
 	t_point	**points;
-
 } t_map;
 
 // image in buffer

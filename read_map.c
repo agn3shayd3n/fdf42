@@ -55,6 +55,7 @@ int	map_filler(t_map *map, const char *filename)
 	close(fd);
 	return (0);
 }
+
 void	filler_aux(t_point *row, char **split, int y, int width)
 {
 	int		x;

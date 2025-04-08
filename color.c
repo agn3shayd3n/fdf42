@@ -12,10 +12,22 @@
 
 #include "fdf.h"
 
-int	get_color(int z, int z_min, int z_max)
+int	get_color(int z)
 {
-	
+	if (z <= 100)
+		return (0x8B3A3A); // rosa salmón pastel
+	if (z <= 200)
+		return (0xE99696); // rosa más claro
+	if (z <= 300)
+		return (0xFADDDD); // rosa suave
+	if (z <= 500)
+		return (0xEDEDED); // grisáceo suave
+	return (0xFFFFFF);     // blanco
 }
+
+
+
+
 
 
 
