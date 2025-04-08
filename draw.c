@@ -32,7 +32,6 @@ void	draw_map(t_map *map, t_data *img, t_view *view)
 		while (x < map->width)
 		{
 			if (x < map->width -1)
-				if (x < map->width - 1)
 				draw_line(
 					project(map->points[y][x], view),
 					project(map->points[y][x + 1], view),

@@ -14,61 +14,22 @@
 #include "fdf.h"
 #include "mlx.h"
 
-void	auto_fit_view(t_map *map, t_view *view)
+/*
+void auto_fit_view(t_map *map, t_view *view, const char *filename)
 {
-	int		x, y;
-	float	min_x = 1e9, max_x = -1e9;
-	float	min_y = 1e9, max_y = -1e9;
-	t_proj	p;
+	(void)map;
+	(void)filename;
 
-	// Usa una scale temporal para hacer la proyección y calcular dimensiones
-	view->scale = 1.0;
-	x = 0;
-	while (x < map->height)
-	{
-		y = 0;
-		while (y < map->width)
-		{
-			p = project(map->points[x][y], view);
-			if (p.x < min_x) min_x = p.x;
-			if (p.x > max_x) max_x = p.x;
-			if (p.y < min_y) min_y = p.y;
-			if (p.y > max_y) max_y = p.y;
-			y++;
-		}
-		x++;
-	}
+	view->scale = 25.0;        // Escala visual decente
+	view->z_scale = view->scale * 1.0;      // Relieve moderado
 
-	float	map_width = max_x - min_x;
-	float	map_height = max_y - min_y;
+	view->offset_x = 480;     // Mitad horizontal de una ventana 1280x720
+	view->offset_y = 50;     // Mitad vertical
 
-	// Calcula el mejor zoom para que quepa en la ventana con márgenes
-	float zoom_x = 1280 / map_width;
-	float zoom_y = 720 / map_height;
-	view->scale = fminf(zoom_x, zoom_y) * 0.8; // 80% para margen
-
-	// Recalcula para el nuevo zoom y centra
-	min_x = 1e9, max_x = -1e9;
-	min_y = 1e9, max_y = -1e9;
-	x = 0;
-	while (x < map->height)
-	{
-		y = 0;
-		while (y < map->width)
-		{
-			p = project(map->points[x][y], view);
-			if (p.x < min_x) min_x = p.x;
-			if (p.x > max_x) max_x = p.x;
-			if (p.y < min_y) min_y = p.y;
-			if (p.y > max_y) max_y = p.y;
-			y++;
-		}
-		x++;
-	}
-	view->offset_x = (1280 - (max_x + min_x)) / 2;
-	view->offset_y = (720 - (max_y + min_y)) / 2;
+	printf("auto_fit_view: scale=%f, offset_x=%f, offset_y=%f\n",
+		view->scale, view->offset_x, view->offset_y);
 }
-
+*/
 
 int	main(int argc, char **argv)
 {
@@ -97,9 +58,18 @@ int	main(int argc, char **argv)
 
 	// 4. Inicializar vista (zoom + posición)
 	printf("Preparando vista...\n");
-	fdf.view.z_scale = 3.0;
-	auto_fit_view(fdf.map, &fdf.view);
+	fdf.view.scale = 3.0;
+	fdf.view.z_scale = 2.8;
+	fdf.view.offset_x = 640;
+	fdf.view.offset_y = 360;
+	fdf.view.angle_z = 0;
+	fdf.view.angle_x = 0;
+	fdf.view.angle_y = 0;
+	fdf.view.projection_mode = 0;
+	fdf.view.map_width = fdf.map->width;
+	fdf.view.map_height = fdf.map->height;
 
+	// fdf.view.z_scale = 3.0;
 	// 5. Dibujar mapa
 	draw_map(fdf.map, &fdf.img, &fdf.view);
 	mlx_put_image_to_window(fdf.mlx, fdf.win, fdf.img.img, 0, 0);

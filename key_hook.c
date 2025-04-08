@@ -23,7 +23,29 @@ int	handle_key(int keycode, void *param)
 		fdf->view.scale *= 1.1;
 	else if (keycode == 27) // -
 		fdf->view.scale *=0.9;
-	
+	else if (keycode == 124) // <-
+		fdf->view.offset_x -= 30;
+	else if (keycode == 123) // ->
+		fdf->view.offset_x += 30;
+	else if (keycode == 126)
+		fdf->view.offset_y += 30; // V
+	else if (keycode == 125) // ^
+		fdf->view.offset_y -= 30;
+	else if (keycode == 15) // R
+		fdf->view.angle_z += 0.1;
+	else if (keycode == 37) // L
+		fdf->view.angle_z -= 0.1;
+	else if (keycode == 11) // B
+		fdf->view.projection_mode = !fdf->view.projection_mode;
+	else if (keycode == 12) // Q
+		fdf->view.angle_x += 0.1;
+	else if (keycode == 14) // E
+		fdf->view.angle_x -= 0.1;		
+	else if (keycode == 13) // W
+		fdf->view.angle_y += 0.1;
+	else if (keycode == 1) // S
+		fdf->view.angle_y -= 0.1;		
+
 	mlx_clear_window(fdf->mlx, fdf->win);
 	mlx_destroy_image(fdf->mlx, fdf->img.img);
 	fdf->img.img = mlx_new_image(fdf->mlx, 1280, 720);

@@ -75,6 +75,12 @@ typedef struct s_view {
 	float	z_scale;
 	float	offset_y;
 	float	offset_x;
+	float	angle_z;
+	float	angle_x;
+	float	angle_y;
+	int		projection_mode;
+	int		map_width;
+	int		map_height;
 } t_view;
 
 typedef struct s_fdf
@@ -96,7 +102,7 @@ void	filler_aux(t_point *row, char **split, int y, int width);
 
 // draw topography
 void	draw_map(t_map *map, t_data *img, t_view *view);
-t_proj	project(t_point p, t_view *v);
+t_proj	project(t_point p, t_view *view);
 void	bresenham(t_proj a, t_proj b, t_data *img, int color);
 void	bresenham_ii(t_line *line);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
