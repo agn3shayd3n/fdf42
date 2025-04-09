@@ -89,6 +89,8 @@ typedef struct s_fdf
 	t_data	img;
 	t_map	*map;
 	t_view	view;
+	t_view	reset_view;
+	int		show_panel;
 }	t_fdf;
 
 // read map
@@ -109,6 +111,9 @@ void	draw_line(t_proj a, t_proj b, t_data *img);
 
 // color
 int	get_color(int z);
+
+// text
+void	instructions(t_fdf *fdf);
 
 // keys
 int	handle_key(int keycode, void *param);

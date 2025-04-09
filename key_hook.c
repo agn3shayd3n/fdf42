@@ -44,7 +44,11 @@ int	handle_key(int keycode, void *param)
 	else if (keycode == 13) // W
 		fdf->view.angle_y += 0.1;
 	else if (keycode == 1) // S
-		fdf->view.angle_y -= 0.1;		
+		fdf->view.angle_y -= 0.1;
+	else if (keycode == 51)	//reset
+		fdf->view = fdf->reset_view;
+	else if (keycode == 4) // H
+		fdf->show_panel = !fdf->show_panel;
 
 	mlx_clear_window(fdf->mlx, fdf->win);
 	mlx_destroy_image(fdf->mlx, fdf->img.img);
@@ -53,6 +57,7 @@ int	handle_key(int keycode, void *param)
 		&fdf->img.line_len, &fdf->img.endian);
 	draw_map(fdf->map, &fdf->img, &fdf->view);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img.img, 0, 0);
+	instructions(fdf);
 	return (0);
 }
 int	handle_close(void *param)

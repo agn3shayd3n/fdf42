@@ -59,7 +59,7 @@ int	main(int argc, char **argv)
 	// 4. Inicializar vista (zoom + posición)
 	printf("Preparando vista...\n");
 	fdf.view.scale = 3.0;
-	fdf.view.z_scale = 2.8;
+	fdf.view.z_scale = 3.0;
 	fdf.view.offset_x = 640;
 	fdf.view.offset_y = 360;
 	fdf.view.angle_z = 0;
@@ -68,11 +68,13 @@ int	main(int argc, char **argv)
 	fdf.view.projection_mode = 0;
 	fdf.view.map_width = fdf.map->width;
 	fdf.view.map_height = fdf.map->height;
+	fdf.reset_view = fdf.view;
 
 	// fdf.view.z_scale = 3.0;
 	// 5. Dibujar mapa
 	draw_map(fdf.map, &fdf.img, &fdf.view);
 	mlx_put_image_to_window(fdf.mlx, fdf.win, fdf.img.img, 0, 0);
+	instructions(&fdf);
 
 	// 6. Eventos
 	mlx_hook(fdf.win, 2, 1L << 0, handle_key, &fdf); // Teclado
@@ -80,6 +82,7 @@ int	main(int argc, char **argv)
 
 	// 7. Bucle de eventos
 	printf("Entrando en loop...\n");
+	fdf.show_panel = 1;
 	mlx_loop(fdf.mlx);
 	return (0);
 }

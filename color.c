@@ -14,6 +14,20 @@
 
 int	get_color(int z)
 {
+	if (z <= 0)
+		return (0x8B3A3A);
+	if (z <= 40)
+		return (0xE99696);
+	if (z <= 80)
+		return (0xFADDDD);
+	if (z <= 100)
+		return (0xEDEDED);
+	return (0xFFFFFF);
+}
+
+/* only for cyber02
+int	get_color(int z)
+{
 	if (z <= 100)
 		return (0x8B3A3A); // rosa salmón pastel
 	if (z <= 200)
@@ -24,6 +38,7 @@ int	get_color(int z)
 		return (0xEDEDED); // grisáceo suave
 	return (0xFFFFFF);     // blanco
 }
+*/
 
 
 
