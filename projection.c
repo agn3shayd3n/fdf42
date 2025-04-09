@@ -24,13 +24,34 @@ void	axis_rotation(float *x, float *y, float *z, t_view *view)
 	*x = tmp;
 }
 
-t_proj	project(t_point p, t_view *view)
+t_proj	projection_view(float x, float y, t_view *view, t_point p)
 {
 	t_proj	proj;
-	float	x;
-	float	y;
 	float	rot_x;
 	float	rot_y;
+
+	rot_x = x * cos(view->angle_z) - y * sin(view->angle_z);
+	rot_y = x * sin(view->angle_z) + y * cos(view->angle_z);
+	if (view->projection_mode == 0)
+	{
+		proj.x = ((rot_x - rot_y) * 10) * view->scale * 1.5 + view->offset_x;
+		proj.y = ((rot_x + rot_y) * 5 - p.z * view->z_scale) * view->scale
+			+ view->offset_y;
+	}
+	else // birds eye
+	{
+		proj.x = rot_x * view->scale + view->offset_x;
+		proj.y = rot_y * view->scale - p.z;
+		proj.y = proj.y * (view->z_scale * 0.1) + view->offset_y;
+	}
+	proj.z = p.z;
+	return (proj);
+}
+
+t_proj	project(t_point p, t_view *view)
+{
+	float	x;
+	float	y;
 	float	z;
 	float	center_x;
 	float	center_y;
@@ -41,18 +62,5 @@ t_proj	project(t_point p, t_view *view)
 	y = p.y - center_y;
 	z = p.z;
 	axis_rotation(&x, &y, &z, view);
-	rot_x = x * cos(view->angle_z) - y * sin(view->angle_z);
-	rot_y = x * sin(view->angle_z) + y * cos(view->angle_z);
-	if (view->projection_mode == 0)
-	{
-		proj.x = ((rot_x - rot_y) * 10) * view->scale * 1.5 + view->offset_x;
-		proj.y = ((rot_x + rot_y) * 5 - p.z * view->z_scale) * view->scale + view->offset_y;
-	}
-	else // birds eye
-	{
-		proj.x = rot_x * view->scale + view->offset_x;
-		proj.y = rot_y * view->scale - p.z * (view->z_scale * 0.1) + view->offset_y;
-	}
-	proj.z = p.z;
-	return (proj);
+	return (projection_view(x, y, view, p));
 }

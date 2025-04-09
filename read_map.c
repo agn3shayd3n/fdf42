@@ -24,12 +24,13 @@ t_map	*read_map(const char *filename)
 	if (map->height <= 0 || map->width <= 0)
 		return (NULL);
 	map->points = malloc(sizeof(t_point) * map->height);
-	if(!map->points)
+	if (!map->points)
 		return (NULL);
 	if (map_filler(map, filename) == -1)
 		return (NULL);
 	return (map);
 }
+
 int	map_filler(t_map *map, const char *filename)
 {
 	int		fd;
@@ -41,8 +42,11 @@ int	map_filler(t_map *map, const char *filename)
 	if (fd < 0)
 		return (-1);
 	y = 0;
-	while ((line = get_next_line(fd)) && y < map->height)
+	while (y < map->height)
 	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
 		map->points[y] = malloc(sizeof(t_point) * map->width);
 		if (!map->points[y])
 			return (-1);
@@ -82,10 +86,12 @@ int	get_height(const char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (-1);
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		height++;
 		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (height);

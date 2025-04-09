@@ -18,9 +18,9 @@ static int	handle_zoom(int keycode, void *param)
 
 	fdf = (t_fdf *)param;
 	if (keycode == 24) // + MAC
-		fdf->view.scale * = 1.1;
+		fdf->view.scale *= 1.1;
 	else if (keycode == 27) // -
-		fdf->view.scale * = 0.9;
+		fdf->view.scale *= 0.9;
 	return (0);
 }
 

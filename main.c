@@ -59,7 +59,7 @@ int	main(int argc, char **argv)
 	// 4. Inicializar vista (zoom + posición)
 	printf("Preparando vista...\n");
 	fdf.view.scale = 3.0;
-	fdf.view.z_scale = 3.0;
+	fdf.view.z_scale = 5.0;
 	fdf.view.offset_x = 640;
 	fdf.view.offset_y = 360;
 	fdf.view.angle_z = 0;
