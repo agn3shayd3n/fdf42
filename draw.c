@@ -46,4 +46,3 @@ void	draw_map(t_map *map, t_data *img, t_view *view)
 		y++;
 	}
 }
-

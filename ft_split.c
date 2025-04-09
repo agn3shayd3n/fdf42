@@ -82,4 +82,3 @@ char	**ft_split(char *s, char c)
 	res[index] = NULL;
 	return (res);
 }
-

@@ -39,10 +39,3 @@ int	get_color(int z)
 	return (0xFFFFFF);     // blanco
 }
 */
-
-
-
-
-
-
-

@@ -42,7 +42,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	char	*dst;
 
 	if (x < 0 || y < 0 || x >= 1280 || y >= 720)
-	return ;
+		return ;
 	dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
 	*(unsigned int *)dst = color;
 }
