@@ -17,15 +17,15 @@ void	instructions(t_fdf *fdf)
 	int		i;
 	char	*lines[10];
 
-	lines[0] = "--- CONTROLES ---",
-	lines[1] = "+ / -: Zoom",
-	lines[2] = "Flechas: Mover mapa",
-	lines[3] = "W/S: Rotar eje Y",
-	lines[4] = "Q/E: Rotar eje X",
-	lines[5] = "R/L: Rotar eje Z",
-	lines[6] = "B: Cambiar proyeccion",
-	lines[7] = "Backspace: Resetear vista",
-	lines[8] = "H: Ocultar controles",
+	lines[0] = "--- CONTROLES ---";
+	lines[1] = "+ / -: Zoom";
+	lines[2] = "Flechas: Mover mapa";
+	lines[3] = "W/S: Rotar eje Y";
+	lines[4] = "Q/E: Rotar eje X";
+	lines[5] = "R/L: Rotar eje Z";
+	lines[6] = "B: Cambiar proyeccion";
+	lines[7] = "Backspace: Resetear vista";
+	lines[8] = "H: Ocultar controles";
 	lines[9] = NULL;
 	i = 0;
 	if (!fdf->show_panel)

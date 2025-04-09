@@ -13,44 +13,48 @@
 #ifndef FDF_H
 # define FDF_H
 
-#include "get_next_line.h"
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <math.h>
-#include "mlx.h"
+# include "get_next_line.h"
+# include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <math.h>
+# include "mlx.h"
 
-typedef struct s_point {
+typedef struct s_point
+{
 	int	x;
 	int	y;
 	int	z;
 	int	color;
-} t_point;
+}	t_point;
 
-typedef struct	s_map {
+typedef struct s_map
+{
 	int		width;
 	int		height;
 	t_point	**points;
-} t_map;
+}	t_map;
 
 /*-*- image in buffer *-*/
 
-typedef struct	s_data {
+typedef struct s_data
+{
 	void	*img;
 	char	*addr;
 	int		bpp; // bits per pixel
 	int		line_len;
 	int		endian;
-} t_data;
+}	t_data;
 
 /*-*- trigonometry, 3D illusion *-*/
 
-typedef struct s_proj {
+typedef struct s_proj
+{
 	int	x;
 	int	y;
 	int	z;
-} t_proj;
+}	t_proj;
 
 /*-*- draw lines, bresenham's algorithm *-*/
 
@@ -65,11 +69,12 @@ typedef struct s_line
 	t_proj	a;
 	t_proj	b;
 	t_data	*img;
-} t_line;
+}	t_line;
 
 /*-*- views and controls *-*/
 
-typedef struct s_view {
+typedef struct s_view
+{
 	float	scale;
 	float	z_scale;
 	float	offset_y;
@@ -80,7 +85,7 @@ typedef struct s_view {
 	int		projection_mode;
 	int		map_width;
 	int		map_height;
-} t_view;
+}	t_view;
 
 typedef struct s_fdf
 {
@@ -110,16 +115,16 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_line(t_proj a, t_proj b, t_data *img);
 
 /*-*- coloring *-*/
-int	get_color(int z);
+int		get_color(int z);
 
 /*-*- text *-*/
 void	instructions(t_fdf *fdf);
 
 /*-*- key hooks *-*/
-int	handle_key(int keycode, void *param);
-int	handle_close(void *param);
+int		handle_key(int keycode, void *param);
+int		handle_close(void *param);
 
 /*-*- utils *-*/
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 
-# endif
+#endif
