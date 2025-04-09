@@ -17,9 +17,9 @@ static int	handle_zoom(int keycode, void *param)
 	t_fdf	*fdf;
 
 	fdf = (t_fdf *)param;
-	if (keycode == 24) // + MAC
+	if (keycode == 24)
 		fdf->view.scale *= 1.1;
-	else if (keycode == 27) // -
+	else if (keycode == 27)
 		fdf->view.scale *= 0.9;
 	return (0);
 }
@@ -29,13 +29,13 @@ static int	handle_arrows(int keycode, void *param)
 	t_fdf	*fdf;
 
 	fdf = (t_fdf *)param;
-	if (keycode == 124) // <-
+	if (keycode == 124)
 		fdf->view.offset_x -= 30;
-	else if (keycode == 123) // ->
+	else if (keycode == 123)
 		fdf->view.offset_x += 30;
 	else if (keycode == 126)
-		fdf->view.offset_y += 30; // V
-	else if (keycode == 125) // ^
+		fdf->view.offset_y += 30;
+	else if (keycode == 125)
 		fdf->view.offset_y -= 30;
 	return (0);
 }
@@ -45,13 +45,13 @@ static int	handle_axis(int keycode, void *param)
 	t_fdf	*fdf;
 
 	fdf = (t_fdf *)param;
-	if (keycode == 12) // Q
+	if (keycode == 12)
 		fdf->view.angle_x += 0.1;
-	else if (keycode == 14) // E
+	else if (keycode == 14)
 		fdf->view.angle_x -= 0.1;
-	else if (keycode == 13) // W
+	else if (keycode == 13)
 		fdf->view.angle_y += 0.1;
-	else if (keycode == 1) // S
+	else if (keycode == 1)
 		fdf->view.angle_y -= 0.1;
 	return (0);
 }
@@ -83,17 +83,17 @@ int	handle_key(int keycode, void *param)
 		handle_zoom(keycode, param);
 	else if (keycode >= 123 && keycode <= 126)
 		handle_arrows(keycode, param);
-	else if (keycode == 15) // R
+	else if (keycode == 15)
 		fdf->view.angle_z += 0.1;
-	else if (keycode == 37) // L
+	else if (keycode == 37)
 		fdf->view.angle_z -= 0.1;
-	else if (keycode == 11) // B
+	else if (keycode == 11)
 		fdf->view.projection_mode = !fdf->view.projection_mode;
 	else if ((keycode == 1) || (keycode >= 12 && keycode <= 14))
 		handle_axis(keycode, param);
-	else if (keycode == 51) //reset
+	else if (keycode == 51)
 		fdf->view = fdf->reset_view;
-	else if (keycode == 4) // H
+	else if (keycode == 4)
 		fdf->show_panel = !fdf->show_panel;
 	create_window(param);
 	return (0);

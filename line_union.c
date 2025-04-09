@@ -16,8 +16,8 @@ void	bresenham(t_proj a, t_proj b, t_data *img, int color)
 {
 	t_line	line;
 
-	line.dx = abs(b.x - a.x); // absolute value, convierte siempre en pos
-	line.dy = abs(b.y - a.y); // no importa si izq abajo o dch...
+	line.dx = abs(b.x - a.x);
+	line.dy = abs(b.y - a.y);
 	if (a.x < b.x)
 		line.st_x = 1;
 	else

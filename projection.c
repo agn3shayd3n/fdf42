@@ -38,7 +38,7 @@ t_proj	projection_view(float x, float y, t_view *view, t_point p)
 		proj.y = ((rot_x + rot_y) * 5 - p.z * view->z_scale) * view->scale
 			+ view->offset_y;
 	}
-	else // birds eye
+	else
 	{
 		proj.x = rot_x * view->scale + view->offset_x;
 		proj.y = (rot_y * view->scale - p.z * (view->z_scale * 0.1))

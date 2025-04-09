@@ -52,39 +52,3 @@ int	main(int argc, char **argv)
 	mlx_loop(fdf.mlx);
 	return (0);
 }
-
-/*
-int	main(int argc, char **argv)
-{
-	t_fdf	fdf;
-
-	if (argc != 2)
-		return (1);
-	fdf.map = read_map(argv[1]);
-	if (!fdf.map)
-		return (1);
-	printf("Iniciando MLX...\n");
-	fdf.mlx = mlx_init();
-	printf("Creando ventana...\n");
-	fdf.win = mlx_new_window(fdf.mlx, 1280, 720, "FdF");
-	// 3. Crear imagen en memoria
-	printf("Creando imagen...\n");
-	fdf.img.img = mlx_new_image(fdf.mlx, 1280, 720);
-	fdf.img.addr = mlx_get_data_addr(fdf.img.img,
-			&fdf.img.bpp, &fdf.img.line_len, &fdf.img.endian);
-	// 4. Inicializar vista (zoom + posición)
-	printf("Preparando vista...\n");
-	setting_view(&fdf);
-	// 5. Dibujar mapa
-	draw_map(fdf.map, &fdf.img, &fdf.view);
-	mlx_put_image_to_window(fdf.mlx, fdf.win, fdf.img.img, 0, 0);
-	instructions(&fdf);
-	// 6. Eventos
-	mlx_hook(fdf.win, 2, 1L << 0, handle_key, &fdf);
-	mlx_hook(fdf.win, 17, 0, handle_close, &fdf);
-	// 7. Bucle de eventos
-	printf("Entrando en loop...\n");
-	fdf.show_panel = 1;
-	mlx_loop(fdf.mlx);
-	return (0);
-}*/
