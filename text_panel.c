@@ -18,7 +18,7 @@ void	instructions(t_fdf *fdf)
 	char	*lines[10];
 
 	lines[0] = "--- CONTROLES ---";
-	lines[1] = "+ / -: Zoom";
+	lines[1] = "Z/X: Zoom";
 	lines[2] = "Flechas: Mover mapa";
 	lines[3] = "W/S: Rotar eje Y";
 	lines[4] = "Q/E: Rotar eje X";
