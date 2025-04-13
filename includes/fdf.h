@@ -115,7 +115,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_line(t_proj a, t_proj b, t_data *img);
 
 /*-*- build frame by frame *-*/
-int	create_window(void *param);
+int		create_window(void *param);
 
 /*-*- coloring *-*/
 int		get_color(int z);

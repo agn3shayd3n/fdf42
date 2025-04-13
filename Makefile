@@ -1,8 +1,9 @@
 NAME = fdf
 
-SRCS = main.c read_map.c projection.c line_union.c fdf_utils.c ft_split.c draw.c \
-get_next_line.c get_next_line_utils.c color.c key_hook.c text_panel.c handle_close.c \
-build_win.c \
+SRCS = srcs/main.c srcs/read_map.c srcs/projection.c srcs/line_union.c \
+srcs/ft_split.c srcs/draw.c srcs/get_next_line.c srcs/get_next_line_utils.c \
+srcs/color.c srcs/key_hook.c srcs/text_panel.c srcs/handle_close.c \
+srcs/build_win.c srcs/fdf_utils.c \
 
 OBJ_DIR = obj
 

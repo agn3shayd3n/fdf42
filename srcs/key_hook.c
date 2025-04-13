@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
 static int	handle_zoom(int keycode, void *param)
 {
@@ -61,7 +61,6 @@ int	handle_key(int keycode, void *param)
 	t_fdf	*fdf;
 
 	fdf = (t_fdf *)param;
-	printf("%d\n", keycode);
 	if (keycode == 53)
 		exit(0);
 	else if (keycode == 6 || keycode == 7)
