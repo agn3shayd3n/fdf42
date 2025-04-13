@@ -12,6 +12,33 @@
 
 #include "../includes/fdf.h"
 
+int	ft_isdigit(int i)
+{
+	if (!(i >= '0' && i <= '9'))
+	{
+		return (0);
+	}
+	return (1);
+}
+
+int	is_valid(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str || !str[0])
+		return (0);
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] && str[i] != ',')
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	ft_atoi(const char *str)
 {
 	int		i;

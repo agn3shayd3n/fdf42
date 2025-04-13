@@ -129,5 +129,6 @@ int		handle_close(void *param);
 
 /*-*- utils *-*/
 int		ft_atoi(const char *str);
+int		is_valid(char *str);
 
 #endif

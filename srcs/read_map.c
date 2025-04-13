@@ -65,6 +65,11 @@ void	filler_aux(t_point *row, char **split, int y, int width)
 	int		x;
 
 	x = 0;
+	if (!is_valid(split[x]))
+	{
+		write(2, "Error: mapa inválido.\n", 23);
+		exit (1);
+	}
 	while (x < width)
 	{
 		row[x].x = x;
