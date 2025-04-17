@@ -17,7 +17,7 @@ void	axis_rotation(float *x, float *y, float *z, t_view *view)
 	float	tmp;
 
 	tmp = *y * cos(view->angle_x) - *z * sin(view->angle_x);
-	*z = *y * sin(view->angle_y) + *z * cos(view->angle_y);
+	*z = *y * sin(view->angle_x) + *z * cos(view->angle_x);
 	*y = tmp;
 	tmp = *x * cos(view->angle_y) + *z * sin(view->angle_y);
 	*z = -*x * sin(view->angle_y) + *z * cos(view->angle_y);
